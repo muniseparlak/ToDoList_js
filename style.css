@@ -1,6 +1,110 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap');
+
 * {
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
 }
+
+body {
+	background: linear-gradient(-45deg, #ee7752, #e07ea4, #6dbedc, #23d5ab);
+	background-size: 400% 400%;
+	animation: gradient 10s ease infinite;
+	height: 100vh;
+}
+
+@keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
+
+.container{
+  background-color: white;
+  border-radius: 20px;
+  padding: 20px;
+  margin-top:15px;
+  box-shadow: 5px 10px 15px rgb(67, 65, 65);
+}
+
+.header {
+  background-color: white;
+  padding: 20px 40px;
+  color: white;
+  text-align: center;
+ 
+}
+
+h2{
+  display: flex;
+  justify-content: center;
+  padding-top: 20px;
+  font-family: 'Poppins', sans-serif;
+  text-shadow: 1px 4px #eae3e3;
+}
+
+.header #task{
+  border: 1px solid black;
+  margin-top: 4px;
+  border-radius: 20px;
+  width:70%;
+  height: 50px;
+  margin-right: 10px;
+  padding: 10px;
+}
+
+
+/*ekle butonu*/
+
+#liveToastBtn {
+
+  width: 25%;
+  padding: 10px 25px;
+  border: unset;
+  border-radius: 15px;
+  color: #212121;
+  z-index: 1;
+  cursor: pointer;
+  background: #e8e8e8;
+  position: relative;
+  font-weight: 1000;
+  font-size: 17px;
+  -webkit-box-shadow: 4px 8px 19px -3px rgba(0,0,0,0.27);
+  box-shadow: 4px 8px 19px -3px rgba(0,0,0,0.27);
+  transition: all 900ms;
+  overflow: hidden;
+ }
+ 
+ #liveToastBtn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 0;
+  border-radius: 15px;
+  background-color: #212121;
+  z-index: -1;
+  -webkit-box-shadow: 4px 8px 19px -3px rgba(0,0,0,0.27);
+  box-shadow: 4px 8px 19px -3px rgba(0,0,0,0.27);
+  transition: all 250ms
+ }
+ 
+ #liveToastBtn:hover {
+  color: #e8e8e8;
+ }
+ 
+ #liveToastBtn:hover::before {
+  width: 100%;
+ }
+
 
 ul {
   margin: 0;
@@ -10,7 +114,7 @@ ul {
 ul li {
   cursor: pointer;
   position: relative;
-  padding: 12px 8px 12px 40px;
+  padding: 15px 8px 15px 40px;
   background: #eee;
   font-size: 18px;
   transition: 0.2s;
@@ -31,8 +135,8 @@ ul li:hover {
 }
 
 ul li.checked {
-  background: #276678;
-  color: #fff;
+  background: #707575;
+ color: #fff;
   text-decoration: line-through;
 }
 
@@ -49,29 +153,73 @@ ul li.checked::before {
   width: 7px;
 }
 
-.close {
+
+/*silme butonu*/
+
+.delete-button {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: rgb(112, 109, 109);
+  border: none;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.164);
+  cursor: pointer;
+  transition-duration: 0.3s;
+  overflow: hidden;
   position: absolute;
-  right: 0;
-  top: 0;
-  padding: 12px 16px 12px 16px;
+  right: 10px;
+  top: 5px;
 }
 
-.close:hover {
-  background-color: #f78501;
+.delete-svgIcon {
+  width: 15px;
+  transition-duration: 0.3s;
+}
+
+.delete-svgIcon path {
+  fill: white;
+}
+
+.delete-button:hover {
+  width: 90px;
+  border-radius: 50px;
+  transition-duration: 0.3s;
+  background-color: #E57A84;
+  align-items: center;
+}
+
+.delete-button:hover .delete-svgIcon {
+  width: 20px;
+  transition-duration: 0.3s;
+  transform: translateY(60%);
+  -webkit-transform: rotate(360deg);
+  -moz-transform: rotate(360deg);
+  -o-transform: rotate(360deg);
+  -ms-transform: rotate(360deg);
+  transform: rotate(360deg);
+}
+
+.delete-button::before {
+  display: none;
+  content: "Sil";
   color: white;
-
+  transition-duration: 0.3s;
+  font-size: 2px;
 }
 
-.header {
-  background-color: #f78501;
-  padding: 30px 40px;
-  color: white;
-  text-align: center;
+.delete-button:hover::before {
+  display: block;
+  padding-right: 10px;
+  font-size: 13px;
+  opacity: 1;
+  transform: translateY(0px);
+  transition-duration: 0.3s;
 }
 
-img {
-  background-color: white;
-}
 
 .header:after {
   content: "";
@@ -79,29 +227,4 @@ img {
   clear: both;
 }
 
-input {
-  margin: 0;
-  border: none;
-  border-radius: 0;
-  width: 75%;
-  padding: 10px;
-  float: left;
-  font-size: 16px;
-}
 
-.button {
-  padding: 10px;
-  width: 25%;
-  background: #d9d9d9;
-  color: #555;
-  float: left;
-  text-align: center;
-  font-size: 16px;
-  cursor: pointer;
-  transition: 0.3s;
-  border-radius: 0;
-}
-
-.button:hover {
-  background-color: #bbb;
-}
