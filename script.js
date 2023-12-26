@@ -74,13 +74,31 @@ function addTodoToUI(){
     }
 }
 
-
+//storageden silmek için
+function removeTodoStorage(removeTodo) {
+    checkToDoFromStorage();
+    const index = todos.indexOf(removeTodo);
+    if (index > -1) {
+        todos.splice(index, 1);
+        localStorage.setItem('todos', JSON.stringify(todos));
+    }
+}
 
 
 // liste elemanlarını silmek için fonksiyon
-function removeItem (e){
+function removeItem(e) {
+    const todoText = e.textContent.trim(); // gerektiğinde trim işlemi ekledim
     e.remove();
+    removeTodoStorage(todoText);
 }
+
+
+const el = document.querySelector('.todo-item[data-id="1"]');
+removeItem(el);
+
+
+
+
 
 //storage da todos var mı önce kontrol etmemiz lazım
 function checkToDoFromStorage(newToDo){
